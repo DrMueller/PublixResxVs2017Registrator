@@ -17,12 +17,13 @@ namespace PublicResxVs2017Registrator.Areas.RegistryHandling.Services
 
         internal static void TrySettingPublicResxGenerator(BinFile binFile)
         {
-            var registryEntry = new VsHiveRegistryEntry(binFile);
-
-            if (registryEntry.HiveIsLoaded)
+            using (var registryEntry = new VsHiveRegistryEntry(binFile))
             {
-                ConsoleLoggingService.LogSuccessMessage($"Trying to set values to Hive { binFile.KeyName }.");
-                SetValuesInSubGeneratorGuids(registryEntry);
+                if (registryEntry.HiveIsLoaded)
+                {
+                    ConsoleLoggingService.LogSuccessMessage($"Trying to set values to Hive { binFile.KeyName }.");
+                    SetValuesInSubGeneratorGuids(registryEntry);
+                }
             }
         }
 
