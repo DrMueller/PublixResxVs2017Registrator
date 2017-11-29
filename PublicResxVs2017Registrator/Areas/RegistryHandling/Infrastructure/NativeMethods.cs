@@ -31,5 +31,9 @@ namespace PublicResxVs2017Registrator.Areas.RegistryHandling.Infrastructure
 
         [DllImport("advapi32.dll", SetLastError = true)]
         internal static extern int RegUnLoadKey(uint hKey, string lpSubKey);
+
+        [DllImport("advapi32.dll", SetLastError = true)]
+        public static extern int RegCloseKey(uint hKey);
+
     }
 }

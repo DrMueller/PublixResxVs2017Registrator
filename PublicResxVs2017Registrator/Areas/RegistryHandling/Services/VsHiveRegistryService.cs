@@ -21,7 +21,7 @@ namespace PublicResxVs2017Registrator.Areas.RegistryHandling.Services
             {
                 if (registryEntry.HiveIsLoaded)
                 {
-                    ConsoleLoggingService.LogSuccessMessage($"Trying to set values to Hive { binFile.KeyName }.");
+                    ConsoleLoggingService.LogInfoMessage($"Trying to set values to Hive { binFile.KeyName }..");
                     SetValuesInSubGeneratorGuids(registryEntry);
                 }
             }

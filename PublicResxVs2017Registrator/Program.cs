@@ -1,6 +1,6 @@
 ﻿using System;
-using PublicResxVs2017Registrator.Areas.FileHandling.Services;
-using PublicResxVs2017Registrator.Areas.RegistryHandling.Services;
+using PublicResxVs2017Registrator.Areas;
+using PublicResxVs2017Registrator.Infrastructure.Application;
 using PublicResxVs2017Registrator.Infrastructure.ConsoleHandling;
 
 namespace PublicResxVs2017Registrator
@@ -11,20 +11,22 @@ namespace PublicResxVs2017Registrator
         {
             try
             {
-                RegistryPriviligesService.AssureCurrentProcessHasPriviliges();
-                var binFiles = BinFileSearchService.LoadAllVs2017BinFiles();
-                foreach (var binFile in binFiles)
+                if (StartUpService.CheckIfUserIsAdmin())
                 {
-                    VsHiveRegistryService.TrySettingPublicResxGenerator(binFile);
+                    RegistryService.SetRegistryEntries();
+                }
+                else
+                {
+                    ConsoleLoggingService.LogErrorMessage("Please start the program as Admin.");
                 }
             }
+
             catch (Exception ex)
             {
-                ConsoleLoggingService.LogErrorMessage($"{ ex.Message }: { ex.StackTrace }");
+                ConsoleLoggingService.LogErrorMessage($"{ex.Message}: {ex.StackTrace}");
             }
 
             ConsoleLoggingService.LogSuccessMessage("Finished! (Press Esc to close)");
-
             var key = Console.ReadKey();
             if (key.Key == ConsoleKey.Escape)
             {

@@ -52,6 +52,8 @@
     <Compile Include="Areas\RegistryHandling\Models\VsHiveRegistryEntry.cs" />
     <Compile Include="Areas\RegistryHandling\Services\RegistryPriviligesService.cs" />
     <Compile Include="Areas\RegistryHandling\Services\VsHiveRegistryService.cs" />
+    <Compile Include="Areas\RegistryService.cs" />
+    <Compile Include="Infrastructure\Application\StartUpService.cs" />
     <Compile Include="Infrastructure\ConsoleHandling\ConsoleLoggingService.cs" />
     <Compile Include="Infrastructure\ErrorHandling\Handlers\InvocationErrorHandler.cs" />
     <Compile Include="Infrastructure\ErrorHandling\InvocationErrorCodes.cs" />
@@ -59,10 +61,20 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Areas\FileHandling\Services\BinFileSearchService.cs" />
+    <Compile Include="Assets\Test.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Test.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Test.resx">
+      <Generator>PublicResXFileCodeGeneratorEx</Generator>
+      <LastGenOutput>Test.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,15 +6,23 @@ namespace PublicResxVs2017Registrator.Infrastructure.ConsoleHandling
     {
         internal static void LogErrorMessage(string errorMessage)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(errorMessage);
-            Console.ForegroundColor = ConsoleColor.White;
+            Log(errorMessage, ConsoleColor.DarkRed);
+        }
+
+        internal static void LogInfoMessage(string infoMessage)
+        {
+            Log(infoMessage, ConsoleColor.White);
         }
 
         internal static void LogSuccessMessage(string successMessage)
         {
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine(successMessage);
+            Log(successMessage, ConsoleColor.DarkGreen);
+        }
+
+        private static void Log(string message, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(message);
             Console.ForegroundColor = ConsoleColor.White;
         }
     }
